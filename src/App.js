@@ -7,7 +7,7 @@ import Percentage from './screen/percentage';
 const App = () => {
 	return (
 		<div>
-			<p>hi</p>
+			<p>hi now fgit is working</p>
 			<BrowserRouter>
 				<Routes>
 					<Route path="/" element={<Percentage />} />
