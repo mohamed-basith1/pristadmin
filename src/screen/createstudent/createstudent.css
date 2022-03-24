@@ -1,0 +1,57 @@
+.studentcontainer {
+	padding: 50px;
+	width: 100%;
+	display: flex;
+}
+.studentheader {
+	display: flex;
+	gap: 30px;
+}
+.total {
+	width: 40%;
+	height: 120px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	box-shadow: -1px 0px 16px 0px rgba(0, 0, 0, 0.25);
+	-webkit-box-shadow: -1px 0px 16px 0px rgba(0, 0, 0, 0.25);
+	-moz-box-shadow: -1px 0px 16px 0px rgba(0, 0, 0, 0.25);
+	border-radius: 10px;
+	background-color: rgb(68, 24, 146);
+	color: white;
+}
+.createform {
+	display: flex;
+	background-color: white;
+	gap: 20;
+	border-radius: 10px;
+	box-shadow: -1px 0px 16px 0px rgba(0, 0, 0, 0.25);
+	-webkit-box-shadow: -1px 0px 16px 0px rgba(0, 0, 0, 0.25);
+	-moz-box-shadow: -1px 0px 16px 0px rgba(0, 0, 0, 0.25);
+}
+
+.input {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+
+	gap: 10px;
+}
+.selects {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	gap: 10px;
+}
+.leftside {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	flex: 1;
+	justify-content: space-between;
+}
+.rightside {
+	background-color: blue;
+	flex: 1;
+}
