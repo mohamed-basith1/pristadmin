@@ -32,7 +32,7 @@ const Nav = () => {
 	};
 	return (
 		<div className="navcontainer">
-			<div className="logo">phtot</div>
+			<div className="logo">phtothh</div>
 			<div className="navigationlist">
 				{navigationlist.map((e, index) => {
 					return (
