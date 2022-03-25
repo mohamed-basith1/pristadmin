@@ -1,5 +1,5 @@
 .studentcontainer {
-	padding: 50px;
+	padding: 0px 50px;
 	width: 100%;
 	display: flex;
 }
@@ -9,7 +9,7 @@
 }
 .total {
 	width: 40%;
-	height: 120px;
+	height: 220px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -18,8 +18,24 @@
 	-webkit-box-shadow: -1px 0px 16px 0px rgba(0, 0, 0, 0.25);
 	-moz-box-shadow: -1px 0px 16px 0px rgba(0, 0, 0, 0.25);
 	border-radius: 10px;
-	background-color: rgb(68, 24, 146);
+	background-color: rgb(95, 32, 202);
 	color: white;
+	font-weight: 500;
+}
+.total2 {
+	width: 40%;
+	height: 220px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	box-shadow: -1px 0px 16px 0px rgba(0, 0, 0, 0.25);
+	-webkit-box-shadow: -1px 0px 16px 0px rgba(0, 0, 0, 0.25);
+	-moz-box-shadow: -1px 0px 16px 0px rgba(0, 0, 0, 0.25);
+	border-radius: 10px;
+	background-color: rgb(255, 255, 255);
+	color: rgb(7, 26, 46);
+	font-weight: 500;
 }
 .createform {
 	display: flex;
@@ -35,7 +51,6 @@
 	display: flex;
 	flex-direction: column;
 	flex: 1;
-
 	gap: 10px;
 }
 .selects {
@@ -47,11 +62,47 @@
 .leftside {
 	display: flex;
 	flex-direction: column;
-	gap: 20px;
+	gap: 10px;
 	flex: 1;
 	justify-content: space-between;
 }
 .rightside {
-	background-color: blue;
 	flex: 1;
+	display: flex;
+	flex-direction: column;
+}
+.tablecontainer {
+	flex: 2;
+	display: flex;
+	flex-direction: column;
+}
+.editingcontainer {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+}
+.table {
+	background-color: white;
+	border-radius: 10px;
+	flex: 1;
+	box-shadow: -1px 0px 16px 0px rgba(0, 0, 0, 0.25);
+	-webkit-box-shadow: -1px 0px 16px 0px rgba(0, 0, 0, 0.25);
+	-moz-box-shadow: -1px 0px 16px 0px rgba(0, 0, 0, 0.25);
+}
+.editing {
+	flex: 1;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.editbox {
+	width: 120px;
+	border-radius: 10px;
+	box-shadow: -1px 0px 16px 0px rgba(0, 0, 0, 0.25);
+	-webkit-box-shadow: -1px 0px 16px 0px rgba(0, 0, 0, 0.25);
+	-moz-box-shadow: -1px 0px 16px 0px rgba(0, 0, 0, 0.25);
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	gap: 9px;
 }
