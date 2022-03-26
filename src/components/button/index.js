@@ -1,19 +1,20 @@
 import React from 'react';
 
-const Button = ({ height, width, action, name }) => {
+const Button = ({ height, width, action, name, color, textcolor, size }) => {
 	return (
 		<div
 			onClick={() => action()}
 			style={{
 				height: height,
-				color: 'white',
-				borderRadius: 10,
+				color: textcolor,
+				borderRadius: 20,
+				fontSize: size,
 				display: 'flex',
 				justifyContent: 'center',
 				alignItems: 'center',
 				cursor: 'pointer',
 				width: width,
-				background: 'rgb(68,24,146)'
+				background: color
 			}}
 		>
 			{name}

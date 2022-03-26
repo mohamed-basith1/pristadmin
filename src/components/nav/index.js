@@ -33,7 +33,7 @@ const Nav = () => {
 	return (
 		<div className="navcontainer">
 			<div className="logo">
-				<div style={{ width: 100, height: 100, background: 'red', borderRadius: 50 }} />
+				<div style={{ width: 100, height: 100, background: 'white', borderRadius: 50 }} />
 				<h3>PRIST ADMINPANAL</h3>
 			</div>
 			<div className="navigationlist">

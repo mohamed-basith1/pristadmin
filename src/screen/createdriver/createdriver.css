@@ -1,1 +1,101 @@
+.studentcontainer {
+	padding: 0px 50px;
+	width: 100%;
+	display: flex;
+}
+.studentheader {
+	display: flex;
+	gap: 30px;
+}
+.total {
+	width: 40%;
+	height: 120px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	box-shadow: -1px 0px 8px 0px rgba(0, 0, 0, 0.2);
+	border-radius: 10px;
+	background-color: rgba(21, 122, 255);
+	color: white;
+	font-weight: 500;
+}
+.total2 {
+	width: 40%;
+	height: 120px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	box-shadow: -1px 0px 8px 0px rgba(0, 0, 0, 0.2);
 
+	border-radius: 10px;
+	background-color: rgb(255, 255, 255);
+	color: rgb(7, 26, 46);
+	font-weight: 500;
+}
+.driverform {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: white;
+	gap: 10;
+	border-radius: 10px;
+	box-shadow: -1px 0px 8px 0px rgba(0, 0, 0, 0.2);
+}
+
+.inputss {
+	display: flex;
+
+	flex: 1;
+	gap: 10px;
+}
+.selects {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	gap: 10px;
+}
+.leftside {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	flex: 1;
+	justify-content: space-between;
+}
+.rightside {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+}
+.tablecontainer {
+	flex: 2;
+	display: flex;
+	flex-direction: column;
+}
+.editingcontainer {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+}
+.table {
+	background-color: white;
+	border-radius: 10px;
+	flex: 1;
+	box-shadow: -1px 0px 8px 0px rgba(0, 0, 0, 0.2);
+}
+.editing {
+	flex: 1;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.editbox {
+	width: 120px;
+	border-radius: 10px;
+	box-shadow: -1px 0px 8px 0px rgba(0, 0, 0, 0.2);
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	gap: 9px;
+}

@@ -2,6 +2,7 @@
 	padding: 0px 50px;
 	width: 100%;
 	display: flex;
+	flex-direction: row-reverse;
 }
 .studentheader {
 	display: flex;
@@ -9,42 +10,36 @@
 }
 .total {
 	width: 40%;
-	height: 220px;
+	height: 120px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	box-shadow: -1px 0px 16px 0px rgba(0, 0, 0, 0.25);
-	-webkit-box-shadow: -1px 0px 16px 0px rgba(0, 0, 0, 0.25);
-	-moz-box-shadow: -1px 0px 16px 0px rgba(0, 0, 0, 0.25);
+	box-shadow: -1px 0px 16px 0px rgba(21, 122, 155, .2);
 	border-radius: 10px;
-	background-color: rgb(95, 32, 202);
+	background-color: rgba(21, 122, 255);
 	color: white;
 	font-weight: 500;
 }
 .total2 {
 	width: 40%;
-	height: 220px;
+	height: 120px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	box-shadow: -1px 0px 16px 0px rgba(0, 0, 0, 0.25);
-	-webkit-box-shadow: -1px 0px 16px 0px rgba(0, 0, 0, 0.25);
-	-moz-box-shadow: -1px 0px 16px 0px rgba(0, 0, 0, 0.25);
+	box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
 	border-radius: 10px;
 	background-color: rgb(255, 255, 255);
 	color: rgb(7, 26, 46);
 	font-weight: 500;
 }
-.createform {
+.createforms {
 	display: flex;
 	background-color: white;
-	gap: 20;
+	gap: 10px;
 	border-radius: 10px;
-	box-shadow: -1px 0px 16px 0px rgba(0, 0, 0, 0.25);
-	-webkit-box-shadow: -1px 0px 16px 0px rgba(0, 0, 0, 0.25);
-	-moz-box-shadow: -1px 0px 16px 0px rgba(0, 0, 0, 0.25);
+	box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
 }
 
 .input {
@@ -57,6 +52,7 @@
 	display: flex;
 	flex-direction: column;
 	flex: 1;
+
 	gap: 10px;
 }
 .leftside {
@@ -81,13 +77,11 @@
 	display: flex;
 	flex-direction: column;
 }
-.table {
+.tables {
 	background-color: white;
 	border-radius: 10px;
-	flex: 1;
-	box-shadow: -1px 0px 16px 0px rgba(0, 0, 0, 0.25);
-	-webkit-box-shadow: -1px 0px 16px 0px rgba(0, 0, 0, 0.25);
-	-moz-box-shadow: -1px 0px 16px 0px rgba(0, 0, 0, 0.25);
+	height: 100%;
+	box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
 }
 .editing {
 	flex: 1;
@@ -98,9 +92,7 @@
 .editbox {
 	width: 120px;
 	border-radius: 10px;
-	box-shadow: -1px 0px 16px 0px rgba(0, 0, 0, 0.25);
-	-webkit-box-shadow: -1px 0px 16px 0px rgba(0, 0, 0, 0.25);
-	-moz-box-shadow: -1px 0px 16px 0px rgba(0, 0, 0, 0.25);
+	box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
 	background-color: white;
 	display: flex;
 	flex-direction: column;
