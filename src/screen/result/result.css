@@ -1,0 +1,33 @@
+.resultcontainer{
+    width:100%;
+    padding:20px;
+    display: flex;
+
+color:rgb(7,26,46) ;
+}
+
+
+.resultleft{
+    flex: 1;
+    
+    border-right:1px solid rgba(54, 54, 54, 0.411)
+}
+.resultright{
+    flex: 1;
+   
+}
+
+.resulttitle{
+    display:flex;
+    flex-direction: column;
+    gap:5px;
+    width: 80%;
+}
+.resultform{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    align-items: center;
+    flex-direction: column;
+}
