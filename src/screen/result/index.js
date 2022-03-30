@@ -3,6 +3,8 @@ import React from 'react';
 import './result.css'
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import Button from '../../components/button';
+
+import ReceiptIcon from '@mui/icons-material/Receipt';
 const Result = () => {
 	const formsubmit=()=>{
 		console.log("hi")
@@ -41,7 +43,30 @@ const Result = () => {
 
 	
 </div>
-<div className="resultright">right</div>
+<div className="resultright">
+
+
+	<p> Total result history</p>
+
+
+
+<div className="historycontainer">
+<div className="historylist">
+	<div>
+
+		<ReceiptIcon style={{fontSize:55,color:"rgba(21, 122, 255)"}}/>
+	</div>
+	<div className='titles'>
+	<div>6th semester result</div>
+	<div>4th year cse</div>
+	</div>
+	
+	<div className='date'>date:30/03/2022</div>
+	
+	</div>
+</div>
+
+</div>
 	</div>)
 };
 

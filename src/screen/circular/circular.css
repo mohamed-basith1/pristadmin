@@ -1,0 +1,71 @@
+.resultcontainer{
+    width:100%;
+    padding:20px;
+    display: flex;
+color:rgb(7,26,46) ;
+}
+
+
+.resultleft{
+    flex: 1;
+    
+    border-right:1px solid rgba(85, 84, 84, 0.411)
+}
+.resultright{
+    flex: 1;
+   
+}
+
+.resulttitle{
+    display:flex;
+    flex-direction: column;
+    gap:5px;
+    width: 80%;
+}
+.resultform{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.uploadcontainer{
+    margin: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 10px;
+    width: 80%;
+    height: 200px;
+    box-shadow: -1px 0px 6px 0px rgba(5, 5, 5, 0.2);
+    
+}
+.historylist{
+
+    height: 70px;
+    box-shadow: -1px 0px 6px 0px rgba(5, 5, 5, 0.2);
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.historycontainer{
+    padding: 20px;
+}
+.date{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ 
+    color: rgba(46, 46, 46, 0.541);
+}
+.titles{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+   
+    flex-direction: column;
+    
+}
