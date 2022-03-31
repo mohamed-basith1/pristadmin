@@ -1,3 +1,41 @@
 .percentagecontaner {
 	padding: 50px;
+	width: 100%;
+	display: flex;
+}
+.percentleft {
+	flex: 2;
+	border-right: 1px solid rgba(99, 99, 99, 0.349);
+}
+.percentright {
+	flex: 1;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	flex-direction: column;
+}
+.selectedstudent {
+	width: 80%;
+	padding: 10px;
+	height: 40%;
+	border-radius: 10px;
+	box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
+}
+.changeform {
+	width: 80%;
+	height: 50%;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	flex-direction: column;
+
+	border-radius: 10px;
+	box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
+}
+
+.percentagetabel {
+	background-color: white;
+	border-radius: 10px;
+	height: 100%;
+	box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
 }
