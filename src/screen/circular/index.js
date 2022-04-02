@@ -3,14 +3,19 @@ import React from 'react';
 import './circular.css';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import Button from '../../components/button';
-
+import { motion } from 'framer-motion';
 import ReceiptIcon from '@mui/icons-material/Receipt';
 const Result = () => {
 	const formsubmit = () => {
 		console.log('hi');
 	};
 	return (
-		<div className="resultcontainer">
+		<motion.div
+			className="resultcontainer"
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1.5 }}
+			exit={{ opacity: 0 }}
+		>
 			<div className="resultleft">
 				<h2 style={{ color: 'rgb(7,26,46)' }}>Send Circular</h2>
 				<div className="resultform">
@@ -65,7 +70,7 @@ const Result = () => {
 					</div>
 				</div>
 			</div>
-		</div>
+		</motion.div>
 	);
 };
 

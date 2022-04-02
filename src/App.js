@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Circular from './screen/circular';
 import Createdriver from './screen/createdriver';
 import Createstudent from './screen/createstudent';
@@ -8,7 +8,7 @@ import './App.css';
 import Nav from './components/nav';
 import Result from './screen/result';
 import Axios from './api';
-
+import { AnimatePresence } from 'framer-motion';
 const App = () => {
 	const basith = [ 'basityh i am, props' ];
 	const [ studentlist, setStudentlist ] = useState([]);
@@ -25,20 +25,26 @@ const App = () => {
 		setStudentlist(allstudentlist.data);
 	};
 
-	const getdriverlist = () => {
+	const getdriverlist = async () => {
 		console.log('get driver liost');
+		const alldriverlist = await Axios.get('driver/alldriverdetails');
+		setDriverlist(alldriverlist.data);
+		console.log(alldriverlist.data);
 	};
+
 	return (
 		<div className="appcontainer">
 			<BrowserRouter>
 				<Nav />
-				<Routes>
-					<Route path="/" element={<Percentage checking={basith} />} />
-					<Route path="/circular" element={<Circular />} />
-					<Route path="/createdriver" element={<Createdriver />} />
-					<Route path="/createstudent" element={<Createstudent studentlist={studentlist} />} />
-					<Route path="/result" element={<Result />} />
-				</Routes>
+				<AnimatePresence>
+					<Routes>
+						<Route path="/" element={<Percentage studentlist={studentlist} />} />
+						<Route path="/circular" element={<Circular />} />
+						<Route path="/createdriver" element={<Createdriver driverlist={driverlist} />} />
+						<Route path="/createstudent" element={<Createstudent studentlist={studentlist} />} />
+						<Route path="/result" element={<Result />} />
+					</Routes>
+				</AnimatePresence>
 			</BrowserRouter>
 		</div>
 	);

@@ -8,6 +8,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import Axios from '../../api';
 import { v4 as uuidv4 } from 'uuid';
+import { motion } from 'framer-motion';
 const Createstudent = ({ studentlist }) => {
 	console.log('this from create pagejj', studentlist);
 	const [ selection, setSelection ] = useState([]);
@@ -21,9 +22,7 @@ const Createstudent = ({ studentlist }) => {
 	const [ percentage, setPercentage ] = useState(0);
 
 	//delete the student
-	const deleteoption = (e) => {
-		console.log(e.row);
-	};
+
 	console.log('checking student selection', selection);
 
 	//new create student
@@ -47,12 +46,75 @@ const Createstudent = ({ studentlist }) => {
 		console.log(res.data);
 	};
 
+	const yearchange = async () => {
+		if (selection.length === 0) {
+			console.log('selection is empty');
+		} else {
+			console.log('year chnag elciked');
+			const data = { selection, year: year };
+			const res = await Axios.put('student/changeyear', data);
+			console.log(res.data);
+		}
+	};
+	const deptchange = async () => {
+		if (selection.length === 0) {
+			console.log('selection is empty');
+		} else {
+			console.log('dept change');
+			const data = { selection, dept: dept };
+			const res = await Axios.put('student/changedept', data);
+			console.log(res.data);
+		}
+	};
+	const rollnochange = async () => {
+		console.log(rollno.toUpperCase());
+		const rno = rollno.toUpperCase();
+		if (selection.length === 1) {
+			console.log('roolnum clicked');
+			const data = { selection, rollno: rno };
+			const res = await Axios.put('student/changerollno', data);
+			console.log(res.data);
+		} else {
+			console.log('only one student  change  rollno can be change');
+		}
+	};
+	const namechange = async () => {
+		console.log('name chnag elciked');
+		console.log(sname.toUpperCase());
+		const studentname = sname.toUpperCase();
+		if (selection.length === 1) {
+			const data = { selection, name: studentname };
+			const res = await Axios.put('student/changename', data);
+			console.log(res.data);
+		} else {
+			console.log('only one student  change  name can be change');
+		}
+	};
+	const semchange = async () => {
+		if (selection.length === 0) {
+			console.log('selection is empty');
+		} else {
+			console.log('sem change');
+			const data = { selection, sem: sem };
+			const res = await Axios.put('student/changesem', data);
+			console.log(res.data);
+		}
+	};
+	const deleteoption = async (e) => {
+		console.log('deleted id', e.row.id);
+		const deletedid = e.row;
+		const data = { id: e.row.id };
+		const res = await Axios.put('student/deletestudent', data);
+		console.log(res.data);
+	};
+
 	//columm for table
 	const columns = [
 		{ field: 'id', headerName: 'ID', width: 130 },
 		{ field: 'name', headerName: 'Student Name', width: 230 },
 		{ field: 'rollno', headerName: 'Roll no', width: 130 },
 		{ field: 'year', headerName: 'year', width: 230 },
+		{ field: 'semester', headerName: 'Semester', width: 230 },
 		{ field: 'department', headerName: 'Department', width: 230 },
 		{ field: 'percentage', headerName: 'Percentage', width: 230 },
 		{ field: 'cgpa', headerName: 'Cpga', width: 230 },
@@ -62,29 +124,20 @@ const Createstudent = ({ studentlist }) => {
 			width: 130,
 			renderCell: (e) => {
 				return (
-					<div onClick={() => deleteoption(e)} style={{ textAlign: 'center' }}>
+					<div onClick={() => deleteoption(e)} style={{ textAlign: 'center', cursor: 'pointer' }}>
 						<DeleteOutlineIcon style={{ color: 'red', fontSize: 35 }} />
 					</div>
 				);
 			}
 		}
 	];
-
-	const yearchange = async () => {
-		console.log('year chnag elciked');
-	};
-	const deptchange = () => {
-		console.log('dept chnag elciked');
-	};
-	const rollnochange = () => {
-		console.log('roll chnag elciked');
-	};
-	const namechange = () => {
-		console.log('name chnag elciked');
-	};
-
 	return (
-		<div className="studentcontainer">
+		<motion.div
+			className="studentcontainer"
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1.5 }}
+			exit={{ opacity: 0 }}
+		>
 			<div className="leftside">
 				<div className="studentheader">
 					<div className="total">
@@ -217,6 +270,35 @@ const Createstudent = ({ studentlist }) => {
 					<p style={{ color: 'rgba(7,26,46,.5)' }}>Total selection :</p>
 					<div className="editing">
 						<div className="editbox">
+							<p style={{ fontSize: 15, fontWeight: 500, color: 'rgb(7,26,46)' }}>Semester</p>
+							<Select
+								labelId="demo-simple-select-autowidth-label"
+								id="demo-simple-select-autowidth"
+								value={sem}
+								onChange={(e) => setSem(e.target.value)}
+								autoWidth
+								label="select semester"
+							>
+								<MenuItem value={'1'}>1st</MenuItem>
+								<MenuItem value={'2'}>2nd</MenuItem>
+								<MenuItem value={'3'}>3rd</MenuItem>
+								<MenuItem value={'4'}>4th</MenuItem>
+								<MenuItem value={'5'}>5th</MenuItem>
+								<MenuItem value={'6'}>6th</MenuItem>
+								<MenuItem value={'7'}>7th</MenuItem>
+								<MenuItem value={'8'}>8th</MenuItem>
+							</Select>
+							<Button
+								height={30}
+								width={'100%'}
+								action={() => semchange()}
+								name={'Change'}
+								size={13}
+								color={' rgba(243, 229, 36,.44)'}
+								textcolor={'black'}
+							/>
+						</div>
+						<div className="editbox">
 							<p style={{ fontSize: 15, fontWeight: 500, color: 'rgb(7,26,46)' }}>Year</p>
 							<Select
 								labelId="demo-simple-select-autowidth-label"
@@ -271,7 +353,12 @@ const Createstudent = ({ studentlist }) => {
 
 						<div className="editbox">
 							<p style={{ fontSize: 15, fontWeight: 500, color: 'rgb(7,26,46)' }}>Roll no</p>
-							<TextField id="outlined-basic" label="Enter Roll no" variant="outlined" />
+							<TextField
+								id="outlined-basic"
+								label="Enter Roll no"
+								variant="outlined"
+								onChange={(e) => setRollno(e.target.value)}
+							/>
 							<Button
 								height={30}
 								width={'100%'}
@@ -285,7 +372,12 @@ const Createstudent = ({ studentlist }) => {
 
 						<div className="editbox">
 							<p style={{ fontSize: 15, fontWeight: 500, color: 'rgb(7,26,46)' }}>Name</p>
-							<TextField id="outlined-basic" label="Enter Name" variant="outlined" />
+							<TextField
+								id="outlined-basic"
+								label="Enter Name"
+								variant="outlined"
+								onChange={(e) => setSname(e.target.value)}
+							/>
 							<Button
 								height={30}
 								width={'100%'}
@@ -299,7 +391,7 @@ const Createstudent = ({ studentlist }) => {
 					</div>
 				</div>
 			</div>
-		</div>
+		</motion.div>
 	);
 };
 
