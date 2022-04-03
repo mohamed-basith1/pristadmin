@@ -12,7 +12,7 @@ const Nav = () => {
 	const [ navi, setNavi ] = useState(0);
 	const navigationlist = [
 		{
-			link: '/createstudent',
+			link: '/',
 			name: 'Create Student',
 			number: 0,
 			icon: <PermIdentityOutlinedIcon style={{ fontSize: '35' }} />
@@ -23,7 +23,12 @@ const Nav = () => {
 			number: 1,
 			icon: <DirectionsBusFilledOutlinedIcon style={{ fontSize: '35' }} />
 		},
-		{ link: '/', name: 'Percentage', number: 2, icon: <PercentOutlinedIcon style={{ fontSize: '35' }} /> },
+		{
+			link: '/percentage',
+			name: 'Percentage',
+			number: 2,
+			icon: <PercentOutlinedIcon style={{ fontSize: '35' }} />
+		},
 		{ link: '/result', name: 'result', number: 3, icon: <ReceiptLongOutlinedIcon style={{ fontSize: '35' }} /> },
 
 		{ link: '/circular', name: 'Circular', number: 4, icon: <MailOutlineOutlinedIcon style={{ fontSize: '35' }} /> }

@@ -38,10 +38,10 @@ const App = () => {
 				<Nav />
 				<AnimatePresence>
 					<Routes>
-						<Route path="/" element={<Percentage studentlist={studentlist} />} />
+						<Route path="/" element={<Createstudent studentlist={studentlist} />} />
 						<Route path="/circular" element={<Circular />} />
 						<Route path="/createdriver" element={<Createdriver driverlist={driverlist} />} />
-						<Route path="/createstudent" element={<Createstudent studentlist={studentlist} />} />
+						<Route path="/percentage" element={<Percentage studentlist={studentlist} />} />
 						<Route path="/result" element={<Result />} />
 					</Routes>
 				</AnimatePresence>
