@@ -9,7 +9,7 @@ import logo from '../../assets/pristlogo.png';
 import DirectionsBusFilledOutlinedIcon from '@mui/icons-material/DirectionsBusFilledOutlined';
 const Nav = () => {
 	const navigation = useNavigate();
-	const [ navi, setNavi ] = useState(0);
+	const [ navi, setNavi ] = useState(10);
 	const navigationlist = [
 		{
 			link: '/',
