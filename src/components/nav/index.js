@@ -5,7 +5,8 @@ import PercentOutlinedIcon from '@mui/icons-material/PercentOutlined';
 import ReceiptLongOutlinedIcon from '@mui/icons-material/ReceiptLongOutlined';
 import MailOutlineOutlinedIcon from '@mui/icons-material/MailOutlineOutlined';
 import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined';
-import logo from '../../assets/pristlogo.png';
+import pristlogo from '../../assets/pristlogo.png';
+import bractlogo from '../../assets/bractlogo.png';
 import DirectionsBusFilledOutlinedIcon from '@mui/icons-material/DirectionsBusFilledOutlined';
 const Nav = () => {
 	const navigation = useNavigate();
@@ -40,8 +41,17 @@ const Nav = () => {
 	return (
 		<div className="navcontainer">
 			<div className="logo">
-				<div style={{ width: 130, height: 130, borderRadius: 50 }}>
-					<img src={logo} style={{ height: '100%' }} />
+				<div
+					style={{
+						width: 160,
+						height: 160,
+						borderRadius: 50,
+
+						display: 'flex',
+						justifyContent: 'center'
+					}}
+				>
+					<img src={bractlogo} style={{ height: '100%' }} />
 				</div>
 				<h3>PRIST ADMINPANAL</h3>
 			</div>

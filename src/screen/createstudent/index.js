@@ -31,10 +31,10 @@ const Createstudent = ({ studentlist }) => {
 		const id = uuidv4();
 		console.log('checkjigid ', id);
 		const data = {
-			rollno: rollno,
-			name: sname,
+			rollno: rollno.toUpperCase(),
+			name: sname.toUpperCase(),
 			percentage: percentage,
-			password: spassword,
+			password: spassword.toUpperCase(),
 			department: dept,
 			year: year,
 			id: id,
