@@ -44,10 +44,13 @@
 	border-radius: 5px;
 	display: flex;
 	justify-content: space-between;
+	margin-top: 15px;
 }
 
 .historycontainer {
 	padding: 20px;
+	height: 90%;
+	overflow-y: scroll;
 }
 .date {
 	display: flex;

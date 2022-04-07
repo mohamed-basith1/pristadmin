@@ -1,5 +1,5 @@
 import { TextField, InputLabel, MenuItem, Select } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import './result.css';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import Button from '../../components/button';
@@ -8,17 +8,64 @@ import { storage } from '../../firebase';
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import Axios from '../../api';
+import Loader from '../../components/loader';
+import { v4 as uuidv4 } from 'uuid';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 const Result = () => {
 	const [ year, setYear ] = useState('');
 	const [ dept, setDept ] = useState('');
 	const [ sem, setSem ] = useState('');
 	const [ title, setTitle ] = useState('');
 	const [ description, setDescription ] = useState('');
-
 	const [ image, setImage ] = useState('');
+    const [loading,setLoading]=useState(false)
+    const [history,setHistory]=useState([])
+  
+
+useEffect(()=>{
+	getresulthistory()
+},[loading])
+ 
+
+const getresulthistory=async()=>{
+	const res = await Axios.get('/student/resulthistory')
+	console.log(res.data)
+	setHistory(res.data)
+}
 	const formsubmit = async () => {
-		imageclicked();
+	if(!title.length==0 && !description.length==0){
+	
+		if(!sem.length==0  && year > 0){
+		
+			if(!dept.length==0 && !image==" "){
+				imageclicked();
+				setYear("")
+				setDept("")
+				setTitle("")
+				setSem("")
+				setDescription("")
+				setImage("")
+		        setLoading(true)
+			}
+		
+		}
+		
+	}
+		
 	};
+
+
+
+	const deleteclick=async(e)=>{
+		setLoading(true)
+console.log(e)
+
+const res = await Axios.put('/student/deleteresult',e)
+console.log("delete resond",res.data)
+if(res.status==200){
+	setLoading(false)
+   }
+	}
 
 	const imageclicked = async () => {
 		console.log(image);
@@ -33,24 +80,36 @@ const Result = () => {
 				const day = dateObj.getUTCDate();
 				const years = dateObj.getUTCFullYear();
 				const today = day + '/' + month + '/' + years;
+				const resultsid = uuidv4();
 				const data = {
 					year: year,
 					dept: dept,
+					resultid:resultsid,
 					sem: sem,
 					resultimage: url,
 					title: title,
 					description: description,
 					date: today
 				};
+				
 				const res = await Axios.put('/student/result', data);
+				const ress = await Axios.post('/student/resulthistory', data);
 				console.log(res.data);
+				console.log(ress.data);
+				if(res.status==200){
+                 setLoading(false)
+				}
 			});
 		});
 	};
 
 	return (
 		<motion.div className="resultcontainer" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-			<div className="resultleft">
+			{loading?
+				<Loader />:
+		<>
+
+           <div className="resultleft">
 				<h2 style={{ color: 'rgb(7,26,46)' }}>Upload Result</h2>
 				<div className="resultform">
 					<div className="resulttitle">
@@ -63,6 +122,7 @@ const Result = () => {
 							style={{ width: '100%' }}
 						/>
 					</div>
+
 					<div className="resulttitle">
 						<p>Description</p>
 						<TextField
@@ -153,22 +213,35 @@ const Result = () => {
 				</div>
 			</div>
 			<div className="resultright">
-				<p> Total result history</p>
+				<p> Total result history : {history.length}</p>
 
 				<div className="historycontainer">
-					<div className="historylist">
-						<div>
-							<ReceiptIcon style={{ fontSize: 55, color: 'rgba(21, 122, 255)' }} />
-						</div>
-						<div className="titles">
-							<div>6th semester result</div>
-							<div>4th year cse</div>
-						</div>
 
-						<div className="date">date:30/03/2022</div>
-					</div>
+				{history.map((e,index)=>(
+                   <div className="historylist" key={e.resultid}>
+				   <div>
+					   <ReceiptIcon style={{ fontSize: 55, color: 'rgba(21, 122, 255)' }} />
+				   </div>
+				   <div className="titles">
+					   <div>{`${e.year}th year-${e.dept}`}</div>
+					   <div>{`${e.sem}th semester result`}</div>
+				   </div>
+          <div style={{display:"flex",alignItems:"flex-end",flexDirection:"column"}}>
+           <div className="date">{`date:${e.date}`}</div>
+          <DeleteOutlineIcon style={{fontSize:25, cursor:"pointer"  }} onClick={()=>deleteclick(e)} />
+
+	</div>
+				 
+			   </div>
+				))}
+					
 				</div>
 			</div>
+
+				</>
+		}
+		
+			
 		</motion.div>
 	);
 };
