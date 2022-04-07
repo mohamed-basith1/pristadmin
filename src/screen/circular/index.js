@@ -73,12 +73,12 @@ const Result = () => {
 				console.log(res.data);
 				console.log(ress.data);
 				if (res.status == 200) {
-					setLoading(false);
+					setLoading(false)
 				}
 			});
 		});
 	};
-
+//testing
 	return (
 		<motion.div
 			className="resultcontainer"
