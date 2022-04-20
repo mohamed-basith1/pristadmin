@@ -7,9 +7,10 @@ import SchoolIcon from '@mui/icons-material/School';
 import { DataGrid } from '@mui/x-data-grid';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import Axios from '../../api';
+import Loader from '../../components/loader';
 import { v4 as uuidv4 } from 'uuid';
 import { motion } from 'framer-motion';
-const Createstudent = ({ studentlist }) => {
+const Createstudent = ({ studentlist,action }) => {
 	console.log('this from create pagejj', studentlist);
 	const [ selection, setSelection ] = useState([]);
 	const [ rollno, setRollno ] = useState('');
@@ -20,6 +21,7 @@ const Createstudent = ({ studentlist }) => {
 	const [ year, setYear ] = useState('');
 	const [ cgpa, setCgpa ] = useState(0);
 	const [ percentage, setPercentage ] = useState(0);
+	const [ loading, setLoading ] = useState(false);
 
 	//delete the student
 
@@ -27,10 +29,25 @@ const Createstudent = ({ studentlist }) => {
 
 	//new create student
 	const Studentsubmit = async (e) => {
+		
 		console.log('checking');
 		const id = uuidv4();
 		console.log('checkjigid ', id);
-		const data = {
+	
+
+		if(!sname==""){
+		
+			if(!year==''){
+             
+				if(!rollno==""){
+				
+					if(!dept==""){
+						
+						if(!spassword==""){
+							
+							if(!sem==""){
+								setLoading(true)
+								const data = {
 			rollno: rollno.toUpperCase(),
 			name: sname.toUpperCase(),
 			percentage: percentage,
@@ -44,9 +61,36 @@ const Createstudent = ({ studentlist }) => {
 		console.log(data);
 		const res = await Axios.post('student/create', data);
 		console.log(res.data);
+	
+		if(res.status==200){
+			action()
+			setLoading(false)
+
+		}
+								console.log("now backend push")
+							}else{
+								alert(" sem is Empty")
+							}
+						}else{
+							alert("  Password is Empty")
+						}
+					}else{
+						alert(" department is Empty")
+					}
+				}else{
+					alert("Student Roll Number Empty")
+				}
+			}else{
+				alert(" Year is Empty")
+			}
+		}else{
+			alert("  Student Name is Empty")
+		}
+		
 	};
 
 	const yearchange = async () => {
+		setLoading(true)
 		if (selection.length === 0) {
 			console.log('selection is empty');
 		} else {
@@ -54,9 +98,15 @@ const Createstudent = ({ studentlist }) => {
 			const data = { selection, year: year };
 			const res = await Axios.put('student/changeyear', data);
 			console.log(res.data);
+			
+			if (res.status == 200) {
+				action()
+				setLoading(false)
+			}
 		}
 	};
 	const deptchange = async () => {
+		setLoading(true)
 		if (selection.length === 0) {
 			console.log('selection is empty');
 		} else {
@@ -64,9 +114,15 @@ const Createstudent = ({ studentlist }) => {
 			const data = { selection, dept: dept };
 			const res = await Axios.put('student/changedept', data);
 			console.log(res.data);
+		
+			if (res.status == 200) {
+				action()
+				setLoading(false)
+			}
 		}
 	};
 	const rollnochange = async () => {
+		setLoading(true)
 		console.log(rollno.toUpperCase());
 		const rno = rollno.toUpperCase();
 		if (selection.length === 1) {
@@ -74,11 +130,17 @@ const Createstudent = ({ studentlist }) => {
 			const data = { selection, rollno: rno };
 			const res = await Axios.put('student/changerollno', data);
 			console.log(res.data);
+
+			if (res.status == 200) {
+				action()
+				setLoading(false)
+			}
 		} else {
 			console.log('only one student  change  rollno can be change');
 		}
 	};
 	const namechange = async () => {
+		setLoading(true)
 		console.log('name chnag elciked');
 		console.log(sname.toUpperCase());
 		const studentname = sname.toUpperCase();
@@ -86,11 +148,16 @@ const Createstudent = ({ studentlist }) => {
 			const data = { selection, name: studentname };
 			const res = await Axios.put('student/changename', data);
 			console.log(res.data);
+			if (res.status == 200) {
+				action()
+				setLoading(false)
+			}
 		} else {
 			console.log('only one student  change  name can be change');
 		}
 	};
 	const semchange = async () => {
+		setLoading(true)
 		if (selection.length === 0) {
 			console.log('selection is empty');
 		} else {
@@ -98,14 +165,23 @@ const Createstudent = ({ studentlist }) => {
 			const data = { selection, sem: sem };
 			const res = await Axios.put('student/changesem', data);
 			console.log(res.data);
+			if (res.status == 200) {
+				action()
+				setLoading(false)
+			}
 		}
 	};
 	const deleteoption = async (e) => {
+		setLoading(true)
 		console.log('deleted id', e.row.id);
 		const deletedid = e.row;
 		const data = { id: e.row.id };
 		const res = await Axios.put('student/deletestudent', data);
 		console.log(res.data);
+		if (res.status == 200) {
+			action()
+			setLoading(false)
+		}
 	};
 
 	//columm for table
@@ -138,6 +214,10 @@ const Createstudent = ({ studentlist }) => {
 			animate={{ opacity: 1.5 }}
 			exit={{ opacity: 0 }}
 		>
+{loading?
+				<Loader />:
+		<>
+
 			<div className="leftside">
 				<div className="studentheader">
 					<div className="total">
@@ -391,6 +471,8 @@ const Createstudent = ({ studentlist }) => {
 					</div>
 				</div>
 			</div>
+			</>
+}
 		</motion.div>
 	);
 };

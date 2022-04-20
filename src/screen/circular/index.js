@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import { storage } from '../../firebase';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { ref, uploadBytes, getDownloadURL,deleteObject } from 'firebase/storage';
 import Axios from '../../api';
 import Loader from '../../components/loader';
 import { v4 as uuidv4 } from 'uuid';
@@ -42,7 +42,31 @@ const Result = () => {
 		}
 	};
 	const deleteclick = async (e) => {
-		console.log(e);
+		
+		setLoading(true)
+console.log(e)
+
+const res = await Axios.put('/student/deletecircular',e)
+console.log("delete resond",res.data)
+
+
+
+
+// // Create a reference to the file to delete
+const desertRef = ref(storage, `circular/${e.title}--${e.description}--date:${e.date}`);
+
+// Delete the file
+deleteObject(desertRef).then(() => {
+  console.log("delete succesfully")
+}).catch((error) => {
+  // Uh-oh, an error occurred!
+  console.log("imgae deleting error",error)
+});
+
+
+if(res.status==200){
+	setLoading(false)
+   }
 	};
 	const imageclicked = async () => {
 		console.log(image);
@@ -51,11 +75,11 @@ const Result = () => {
 		const day = dateObj.getUTCDate();
 		const years = dateObj.getUTCFullYear();
 		const today = day + '/' + month + '/' + years;
-		const storageRef = await ref(storage, `circular/${title}--${description}--${image.name}--date:${today}`);
+		const storageRef = await ref(storage, `circular/${title}--${description}--date:${today}`);
 		uploadBytes(storageRef, image).then((snapshot) => {
 			console.log('uploaded succesfully');
 			getDownloadURL(
-				ref(storage, `circular/${title}--${description}--${image.name}--date:${today}`)
+				ref(storage, `circular/${title}--${description}--date:${today}`)
 			).then(async (url) => {
 				const cirularssid = uuidv4();
 				const data = {

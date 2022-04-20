@@ -6,7 +6,7 @@ import Button from '../../components/button';
 import { motion } from 'framer-motion';
 import { storage } from '../../firebase';
 import ReceiptIcon from '@mui/icons-material/Receipt';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { ref, uploadBytes, getDownloadURL,deleteObject } from 'firebase/storage';
 import Axios from '../../api';
 import Loader from '../../components/loader';
 import { v4 as uuidv4 } from 'uuid';
@@ -62,6 +62,22 @@ console.log(e)
 
 const res = await Axios.put('/student/deleteresult',e)
 console.log("delete resond",res.data)
+
+
+
+
+// Create a reference to the file to delete
+const desertRef = ref(storage, `results/${e.year}-year-${e.dept}-${e.sem}-sem-results`);
+
+// Delete the file
+deleteObject(desertRef).then(() => {
+  console.log("delete succesfully")
+}).catch((error) => {
+  // Uh-oh, an error occurred!
+  console.log("imgae deleting error",error)
+});
+
+
 if(res.status==200){
 	setLoading(false)
    }
@@ -69,11 +85,11 @@ if(res.status==200){
 
 	const imageclicked = async () => {
 		console.log(image);
-		const storageRef = await ref(storage, `results/${year}-year-${dept}-${sem}-sem-results${image.name}`);
+		const storageRef = await ref(storage, `results/${year}-year-${dept}-${sem}-sem-results`);
 		uploadBytes(storageRef, image).then((snapshot) => {
 			console.log('uploaded succesfully');
 			getDownloadURL(
-				ref(storage, `results/${year}-year-${dept}-${sem}-sem-results${image.name}`)
+				ref(storage, `results/${year}-year-${dept}-${sem}-sem-results`)
 			).then(async (url) => {
 				const dateObj = new Date();
 				const month = dateObj.getUTCMonth() + 1; //months from 1-12

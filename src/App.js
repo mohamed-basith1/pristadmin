@@ -10,13 +10,16 @@ import Result from './screen/result';
 import Axios from './api';
 import { AnimatePresence } from 'framer-motion';
 const App = () => {
-	const basith = [ 'basityh i am, props' ];
 	const [ studentlist, setStudentlist ] = useState([]);
 	const [ driverlist, setDriverlist ] = useState([]);
-	useEffect(() => {
-		getstudentlist();
-		getdriverlist();
-	}, []);
+	const [ triger, setTriger ] = useState(true);
+	useEffect(
+		() => {
+			getstudentlist();
+			getdriverlist();
+		},
+		[ triger ]
+	);
 
 	const getstudentlist = async () => {
 		console.log('student list get');
@@ -38,9 +41,15 @@ const App = () => {
 				<Nav />
 				<AnimatePresence>
 					<Routes>
-						<Route path="/" element={<Createstudent studentlist={studentlist} />} />
+						<Route
+							path="/"
+							element={<Createstudent studentlist={studentlist} action={() => setTriger(!triger)} />}
+						/>
 						<Route path="/circular" element={<Circular />} />
-						<Route path="/createdriver" element={<Createdriver driverlist={driverlist} />} />
+						<Route
+							path="/createdriver"
+							element={<Createdriver driverlist={driverlist} action={() => setTriger(!triger)} />}
+						/>
 						<Route path="/percentage" element={<Percentage studentlist={studentlist} />} />
 						<Route path="/result" element={<Result />} />
 					</Routes>

@@ -9,47 +9,84 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { motion } from 'framer-motion';
 import { v4 as uuidv4 } from 'uuid';
 import Axios from '../../api';
-const Createdriver = ({ driverlist }) => {
+import Loader from '../../components/loader';
+const Createdriver = ({ driverlist, action }) => {
 	const [ phone, setPhone ] = useState(0);
 	const [ name, setName ] = useState('');
 	const [ email, setEmail ] = useState('');
 	const [ password, setPassword ] = useState('');
 	const [ busno, setBusno ] = useState('');
 	const [ selection, setSelection ] = useState('');
+	const [ loading, setLoading ] = useState(false);
 	console.log('selection driver', selection);
 
 	const deleteoption = async (e) => {
+		setLoading(true)
 		console.log('i am, delte fyuction', e.row.id);
 		console.log('deleted id', e.row.id);
 		const data = { id: e.row.id };
 		const res = await Axios.put('driver/deletedriver', data);
 		console.log(res.data);
+		if(res.status==200){
+			action()
+			setLoading(false)
+		}
 	};
 
 	const formsubmit = async () => {
-		console.log('submit clicked');
-		const id = uuidv4();
-		const data = {
-			name: name.toUpperCase(),
-			email: email.toLowerCase(),
-			phone: phone,
-			password: password,
-			busno: busno,
-			id: id
-		};
-		console.log(data);
-		const res = await Axios.post('driver/create', data);
-		console.log(res.data);
+		if (!name == '') {
+			if (!phone == 0) {
+				if (!email == '') {
+					if (!password == '') {
+						if (!busno == '') {
+							setLoading(true);
+							console.log('submit clicked');
+							const id = uuidv4();
+							const data = {
+								name: name.toUpperCase(),
+								email: email.toLowerCase(),
+								phone: phone,
+								password: password,
+								busno: busno,
+								id: id
+							};
+							console.log(data);
+							const res = await Axios.post('driver/create', data);
+							console.log(res.data);
+
+							if (res.status == 200) {
+								action();
+								setLoading(false);
+							}
+						} else {
+							alert('  bus number is Empty');
+						}
+					} else {
+						alert(' password is Empty');
+					}
+				} else {
+					alert('Email is Empty');
+				}
+			} else {
+				alert(' phone Number is Empty');
+			}
+		} else {
+			alert('  Driver Name is Empty');
+		}
 	};
 
 	//driver name change
 	const changename = async () => {
 		console.log('name');
+		setLoading(true)
 		if (selection.length === 1) {
 			const data = { selection, name: name.toUpperCase() };
 			console.log(data);
 			const res = await Axios.put('driver/changename', data);
 			console.log(res.data);
+			if(res.status==200){
+				setLoading(false)
+			}
 		} else {
 			console.log('select one driver');
 		}
@@ -58,11 +95,15 @@ const Createdriver = ({ driverlist }) => {
 	//email change
 	const changeemail = async () => {
 		console.log('email');
+		setLoading(true)
 		if (selection.length === 1) {
 			const data = { selection, email: email };
 			console.log(data);
 			const res = await Axios.put('driver/changeemail', data);
 			console.log(res.data);
+			if(res.status==200){
+				setLoading(false)
+			}
 		} else {
 			console.log('select one driver');
 		}
@@ -71,11 +112,15 @@ const Createdriver = ({ driverlist }) => {
 	//bus number schange
 	const changebusno = async () => {
 		console.log('bus');
+		setLoading(true)
 		if (selection.length === 1) {
 			const data = { selection, busno: busno };
 			console.log(data);
 			const res = await Axios.put('driver/changebusno', data);
 			console.log(res.data);
+			if(res.status==200){
+				setLoading(false)
+			}
 		} else {
 			console.log('select one driver');
 		}
@@ -84,11 +129,15 @@ const Createdriver = ({ driverlist }) => {
 	//phone number change
 	const changephone = async () => {
 		console.log('phone');
+		setLoading(true)
 		if (selection.length === 1) {
 			const data = { selection, phone: phone };
 			console.log(data);
 			const res = await Axios.put('driver/changephone', data);
 			console.log(res.data);
+			if(res.status==200){
+				setLoading(false)
+			}
 		} else {
 			console.log('select one driver');
 		}
@@ -121,6 +170,9 @@ const Createdriver = ({ driverlist }) => {
 			animate={{ opacity: 1.5 }}
 			exit={{ opacity: 0 }}
 		>
+			{loading?
+				<Loader />:
+		<>
 			<div className="leftside">
 				<div className="studentheader">
 					<div className="total">
@@ -297,6 +349,8 @@ const Createdriver = ({ driverlist }) => {
 					</div>
 				</div>
 			</div>
+			</>
+}
 		</motion.div>
 	);
 };
