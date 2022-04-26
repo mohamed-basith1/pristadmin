@@ -6,13 +6,16 @@ import { InputLabel, TextField } from '@mui/material';
 import Button from '../../components/button';
 import { motion } from 'framer-motion';
 import axios from '../../api';
+import Loader from '../../components/loader';
 const Percentage = ({ studentlist }) => {
 	const [ selection, setSelection ] = useState([]);
 	const [ percentage, setPercentage ] = useState(0);
 	const [ cgpa, setCgpa ] = useState('');
+	const [ loading, setLoading ] = useState(false);
 	console.log(selection);
 
 	const changesubmit = async () => {
+		setLoading(true)
 		console.log('chnage cunjsjsd');
 		if (selection.length === 0) {
 			console.log('select is empty');
@@ -21,6 +24,7 @@ const Percentage = ({ studentlist }) => {
 			console.log(data);
 			const res = await axios.put('student/changepercentage', data);
 			console.log(res.data);
+			setLoading(false)
 		}
 	};
 	const columns = [
@@ -40,6 +44,9 @@ const Percentage = ({ studentlist }) => {
 			animate={{ opacity: 1 }}
 			exit={{ opacity: 0 }}
 		>
+			{loading?
+				<Loader />:
+		<>
 			<div className="percentleft">
 				<h2 style={{ color: 'rgb(7,26,46)' }}>Select Student</h2>
 				<div className="percentagetabel">
@@ -121,6 +128,8 @@ const Percentage = ({ studentlist }) => {
 					/>
 				</div>
 			</div>
+			</>
+}
 		</motion.div>
 	);
 };
